@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  backend:
+    build:  ../backend/city-list/
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/CITY_APP
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: password
+
+    ports:
+     - 8080:8080
+    depends_on:
+    - pythonapp 
+
+
+  pythonapp:
+    build: ./db-build
+    command: sh -c "sleep 20s ; python3 ./db_populate_script.py"
+    depends_on:
+     - mysql
+
+
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # port exposed : mysql port running inside container
+      - "3306:3306"
+    volumes:
+      - ./data.sql:/docker-entrypoint-initdb.d/data.sql
