@@ -1,15 +1,30 @@
 package com.city.citylist.mapper;
 
 import com.city.citylist.dto.CityDto;
-import com.city.citylist.persistence.CityEntity;
-import org.mapstruct.Mapper;
+import com.city.citylist.entity.CityEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
-public interface CityMapper {
-    List<CityDto> cityListMapper(List<CityEntity> cityEntities);
+@Component
+public class CityMapper {
+    public List<CityDto> toCityDtoList(List<CityEntity> cityEntities) {
+        return cityEntities.stream().map(cityEntity -> {
+            return this.toCityDto(cityEntity);
+        }).toList();
+    }
 
+    public CityDto toCityDto(CityEntity cityEntity) {
+        return new CityDto(cityEntity.getId(), cityEntity.getCityName(), cityEntity.getLink());
+    }
 
-    CityDto cityDtoMapper(CityEntity cityEntity);
+    public List<CityEntity> toCityEntityList(List<CityDto> cityDtos) {
+        return cityDtos.stream().map(cityDto -> {
+            return this.toCityEntity(cityDto);
+        }).toList();
+    }
+
+    public CityEntity toCityEntity(CityDto cityDto) {
+        return new CityEntity(cityDto.getId(), cityDto.getCityName(), cityDto.getLink());
+    }
 }

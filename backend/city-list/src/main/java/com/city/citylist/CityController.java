@@ -3,19 +3,29 @@ package com.city.citylist;
 import com.city.citylist.dto.CityDto;
 import com.city.citylist.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
+@RestController
+@RequestMapping("/cities")
 public class CityController {
 
     @Autowired
     CityService cityService;
 
-    @GetMapping("/cities")
+    @GetMapping("")
     public List<CityDto> getAllCities() {
-        return this.cityService.getAllUsers();
+        return this.cityService.getAllCities();
+    }
+
+    @GetMapping("/{cityName}")
+    public List<CityDto> getCityById(@PathVariable("cityName") String cityName) {
+        return this.cityService.getCityByName(cityName);
+    }
+
+    @PostMapping("/")
+    public CityDto addCity(@RequestBody CityDto cityDto) {
+        return this.cityService.saveCity(cityDto);
     }
 }
