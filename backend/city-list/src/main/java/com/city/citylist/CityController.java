@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cities")
+@CrossOrigin("*")
 public class CityController {
 
     @Autowired
@@ -20,12 +21,17 @@ public class CityController {
     }
 
     @GetMapping("/{cityName}")
-    public List<CityDto> getCityById(@PathVariable("cityName") String cityName) {
+    public CityDto getCityById(@PathVariable("cityName") String cityName) {
         return this.cityService.getCityByName(cityName);
     }
 
     @PostMapping("/")
     public CityDto addCity(@RequestBody CityDto cityDto) {
-        return this.cityService.saveCity(cityDto);
+        return this.cityService.saveCityInfo(cityDto);
+    }
+
+    @PutMapping("/{cityName}")
+    public CityDto saveCity(@PathVariable("cityName") String cityName, @RequestBody CityDto cityDto) {
+        return this.cityService.updateCityInfo(cityName, cityDto);
     }
 }

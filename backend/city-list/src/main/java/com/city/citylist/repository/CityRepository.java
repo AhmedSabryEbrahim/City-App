@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, Integer> {
     List<CityEntity> findAll();
-    List<CityEntity> findByCityName(String cityName);
+    CityEntity findByCityName(String cityName);
 
-    CityEntity saveCity(CityEntity cityEntity);
 }
