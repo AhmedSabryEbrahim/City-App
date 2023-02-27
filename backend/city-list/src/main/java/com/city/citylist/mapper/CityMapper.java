@@ -15,7 +15,10 @@ public class CityMapper {
     }
 
     public CityDto toCityDto(CityEntity cityEntity) {
-        return new CityDto(cityEntity.getId(), cityEntity.getCityName(), cityEntity.getLink());
+        if (cityEntity != null) {
+            return new CityDto(cityEntity.getId(), cityEntity.getCityName(), cityEntity.getLink());
+        }
+        return null;
     }
 
     public List<CityEntity> toCityEntityList(List<CityDto> cityDtos) {
