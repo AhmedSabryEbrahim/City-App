@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS CITY_APP;
+
+USE CITY_APP;
+
+CREATE TABLE cities(
+    id int  AUTO_INCREMENT,
+    city_name VARCHAR(255) NOT NULL,
+    link TEXT NOT NULL,
+    PRIMARY KEY(id)
+);
+
