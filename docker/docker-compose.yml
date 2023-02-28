@@ -10,7 +10,7 @@ services:
 
   backend:
     build:  ../backend/city-list/
-    command: sh -c "sleep 20s ; java -jar ./city-list-0.0.1-SNAPSHOT.jar com.city.citylist.CityListApplication;"
+    command: sh -c "sleep 30s ; java -jar ./city-list-0.0.1-SNAPSHOT.jar com.city.citylist.CityListApplication;"
     environment:
         SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/CITY_APP
         SPRING_DATASOURCE_USERNAME: root
