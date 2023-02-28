@@ -1,0 +1,15 @@
+.full-width-table {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.city_name{
+  font-size: x-large;
+}
+
+app-image-viewer {
+  border-radius: 4px;
+  padding: 50px;
+  width: 150px auto;
+
+}

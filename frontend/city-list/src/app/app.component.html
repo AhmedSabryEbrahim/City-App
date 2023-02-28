@@ -1,0 +1,9 @@
+<div class="container">
+
+  <mat-form-field class="search-form-field">
+    <mat-label>Filter</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText" (input)="onTextSearch()">
+  </mat-form-field>
+
+  <app-data-table [dataSource]="dataSource"></app-data-table>
+</div>
